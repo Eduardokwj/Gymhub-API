@@ -5,7 +5,7 @@ class WgerSearchSchema(Schema):
     muscles = fields.Int(required=False, description="ID do músculo")
     equipment = fields.Int(required=False, description="ID do equipamento")
     status = fields.Int(required=False, description="1 = draft, 2 = approved")
-    name = fields.String(required=False, description="Filtra por nome (contém)")
+    contains = fields.String(required=False, description="Filtra por nome (contém)")
     category = fields.Int(requider=False, description="Categoria (ex.: 10=chest)")
     ordering = fields.String(required=False, description="Ordenação (ex.: name)")
     limit = fields.Int(required=False, description="Quantidade por página (padrão 20)")
