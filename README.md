@@ -15,18 +15,11 @@ Facilitar a organização de treinos de academia, permitindo ao usuário cadastr
 ## 🧭 Arquitetura
 
 ```mermaid
-graph LR
-  Client[[Swagger UI]]
-  GymHub[GymHub API (Flask)]
-  DB[(SQLite)]
-  WGER[(API Externa: WGER)]
-  CoachSVC[coach-svc (FastAPI)]
-
-  Client -- HTTP --> GymHub
-  GymHub <-->|SQLAlchemy| DB
-  GymHub -- /external/wger --> WGER
-  GymHub -- /recommendations --> CoachSVC
-
+flowchart LR
+Swagger_UI -- HTTP -->GYM_HUB
+GYM_HUB <--> DB
+GYM_HUB -- /external/wger --> WGER
+GYM_HUB -- /recommendations --> CoachSVC
 ```
 Requisitos
 
