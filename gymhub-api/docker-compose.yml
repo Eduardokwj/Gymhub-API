@@ -1,0 +1,29 @@
+services:
+  coach-svc:
+    build:
+      context: ../coach-svc
+    container_name: coach-svc
+    ports:
+      - "8000:8000"
+    networks:
+      - mvpnet
+
+
+
+  gymhub-api:
+    build:
+      context: .
+    container_name: gymhub-api
+    env_file:
+      - .env
+    environment:
+      COACH_SVC_URL: "http://coach-svc:8000"
+    ports:
+      - "5000:5000"
+    networks:
+      - mvpnet
+    restart: unless-stopped
+
+networks:
+  mvpnet:
+    driver: bridge
