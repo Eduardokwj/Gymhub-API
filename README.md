@@ -62,7 +62,7 @@ cp .env.example .env
 python app.py
 ```
 
-3. Abra: http://localhost:5000/docs
+3. Abra: http://localhost:5000/
 
 ▶️ Execução via Docker Compose
 
@@ -80,9 +80,9 @@ docker compose up --build
 
 #Acesse:
 
-. GymHub API: http://localhost:5000/docs
+. GymHub API: http://localhost:5000/
 
-. Coach Service: http://localhost:8000/docs
+. Coach Service: http://localhost:8000/
 
 Endpoints principais
 
