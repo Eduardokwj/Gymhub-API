@@ -66,10 +66,10 @@ python app.py
 
 ▶️ Execução via Docker Compose
 
-# Estrutura esperada:
+# Estrutura esperada:  
 
-alguma-pasta/
- ├─ gymhub-api/
+alguma-pasta/  
+ ├─ gymhub-api/  
  └─ coach-svc/
 
 ```bash
