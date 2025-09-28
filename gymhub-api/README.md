@@ -16,10 +16,10 @@ Facilitar a organização de treinos de academia, permitindo ao usuário cadastr
 
 ```mermaid
 flowchart LR
-  Client[[Swagger UI]] -->|HTTP| GymHub[GymHub API (Flask)]
-  GymHub <-->|SQLAlchemy| DB[(SQLite)]
-  GymHub -->|/external/wger| WGER[(API Externa: WGER)]
-  GymHub -->|/recommendations| CoachSVC[coach-svc (FastAPI)]
+Swagger_UI -- HTTP -->GYM_HUB
+GYM_HUB <--> DB
+GYM_HUB -- /external/wger --> WGER
+GYM_HUB -- /recommendations --> CoachSVC
 ```
 Requisitos
 
@@ -62,7 +62,7 @@ cp .env.example .env
 python app.py
 ```
 
-3. Abra: http://localhost:5000/docs
+3. Abra: http://localhost:5000/
 
 ▶️ Execução via Docker Compose
 
@@ -80,9 +80,9 @@ docker compose up --build
 
 #Acesse:
 
-. GymHub API: http://localhost:5000/docs
+. GymHub API: http://localhost:5000/
 
-. Coach Service: http://localhost:8000/docs
+. Coach Service: http://localhost:8000/
 
 Endpoints principais
 
@@ -136,5 +136,6 @@ language=2 (EN), language=10 (PT)
 muscles (ex.: 10 = peito)
 
 equipment (ex.: 1 = barra)
+
 
 Licença: pública e gratuita.
