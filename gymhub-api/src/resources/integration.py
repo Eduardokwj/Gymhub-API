@@ -1,5 +1,3 @@
-# src/blueprints/integration.py
-
 import re
 import unicodedata
 import requests
@@ -214,24 +212,25 @@ class Recommendations(MethodView):
     def post(self, form):
         """
         Recebe dados por FORM (inputs separados no Swagger),
-        monta o payload JSON e chama o coach-svc /plan.
+        e repassa como FORM para o coach-svc /plan.
         """
         coach_url = current_app.config["COACH_SVC_URL"].rstrip("/")
-        payload = {
-            "athlete": {
-                "experience": form["athlete_experience"],
-                "goal": form["athlete_goal"],
-            },
-            "session": [{
-                "exercise_id": form["exercise_id"],
-                "sets": form["sets"],
-                "reps": form["reps"],
-                "load_kg": form["load_kg"],
-                "rir": form.get("rir"),
-            }],
+
+        # Monta form para o coach-svc (que usa FastAPI Form(...))
+        form_to_coach = {
+            "exercise_id": form["exercise_id"],
+            "sets": form["sets"],
+            "reps": form["reps"],
+            "load_kg": form["load_kg"],
+            "experience": form["athlete_experience"],
+            "goal": form["athlete_goal"],
         }
+        # rir é opcional; se vier None não enviamos (evita 'None' string)
+        if form.get("rir") is not None:
+            form_to_coach["rir"] = form["rir"]
+
         try:
-            resp = requests.post(f"{coach_url}/plan", json=payload, timeout=15)
+            resp = requests.post(f"{coach_url}/plan", data=form_to_coach, timeout=15)
             try:
                 body = resp.json()
             except ValueError:
